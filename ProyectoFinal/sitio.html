@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Venta de Boletos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1><img src="images.png" alt="Logo de la Aerolínea"> Aerolínea Ficticia</h1>
+    </header>
+
+    <div id="marcos">
+        <aside id="menu">
+            <button onclick="document.getElementById('contenido').querySelector('iframe').src='informacion.html'">
+                <img src="IMAGEN.PNG" alt="Información"> Información
+            </button>
+            <button onclick="document.getElementById('contenido').querySelector('iframe').src='galeria.html'">
+                <img src="galeria-de-viajes-sa-440.png" alt="Galería"> Galería
+            </button>
+            <button onclick="document.getElementById('contenido').querySelector('iframe').src='reserva.html'">
+                <img src="istockphoto-1289259699-612x612.PNG" alt="Reserva"> Reserva
+            </button>
+        </aside>
+
+        <main id="contenido">
+            <iframe src="informacion.html" width="100%" height="100%" style="border: none;"></iframe>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Aerolínea Ficticia. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

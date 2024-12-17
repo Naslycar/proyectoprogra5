@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main id="contenido">
+        <h2>Galería de Servicios</h2>
+        <div class="galeria">
+            <div class="imagen">
+                <img src="images.jpg" alt="Servicio 1">
+                <p>Servicio de atención al cliente 24/7</p>
+            </div>
+            <div class="imagen">
+                <img src="images2.jpg" alt="Servicio 2">
+                <p>Vuelos cómodos y seguros</p>
+            </div>
+            <div class="imagen">
+                <img src="mejores-destinos-turisticos-viaje-mundo-turismo-Recomiendo-Pirque-01.jpg" alt="Servicio 3">
+                <p>Destinos internacionales increíbles</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aerolínea Ficticia. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Simple visor de imágenes
+        const imagenes = document.querySelectorAll('.imagen img');
+        imagenes.forEach(img => {
+            img.addEventListener('click', () => {
+                const visor = document.createElement('div');
+                visor.className = 'visor';
+                visor.innerHTML = `<img src="${img.src}" alt="Imagen"><button onclick="this.parentElement.remove()">Cerrar</button>`;
+                document.body.appendChild(visor);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Boletos - Paso 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1><img src="images.png" alt="Logo de la Aerolínea"> Aerolínea Ficticia</h1>
+    </header>
+
+    <main id="contenido">
+        <h2>Paso 2: Captura de Datos de la Reserva</h2>
+        <form action="reserva_paso3.html" method="post">
+            <label for="destino">Destino:</label>
+            <select name="destino" id="destino" required>
+                <option value="Perú">Costa Rica - Perú</option>
+                <option value="USA">Costa Rica - USA</option>
+                <option value="España">Costa Rica - España</option>
+                <option value="Panamá">Costa Rica - Panamá</option>
+                <option value="Guatemala">Costa Rica - Guatemala</option>
+            </select>
+
+            <label for="tiquetes">Cantidad de Tiquetes (Max: 6):</label>
+            <input type="number" id="tiquetes" name="tiquetes" min="1" max="6" required>
+
+            <label for="ninos">Cantidad de Niños:</label>
+            <input type="number" id="ninos" name="ninos" min="0" max="6">
+
+            <label>Clase:</label>
+            <div>
+                <input type="radio" id="economica" name="clase" value="Económica" checked>
+                <label for="economica">Económica</label>
+
+                <input type="radio" id="empresarial" name="clase" value="Empresarial">
+                <label for="empresarial">Empresarial</label>
+
+                <input type="radio" id="primera" name="clase" value="Primera Clase">
+                <label for="primera">Primera Clase</label>
+            </div>
+
+            <label for="fecha">Fecha de Reservación:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="pasaporte">Pasaporte (Cédula):</label>
+            <input type="text" id="pasaporte" name="pasaporte" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <button type="button" onclick="guardarDatos()">Continuar</button>
+            <script>
+            function guardarDatos() {
+            const datos = {
+            destino: document.getElementById("destino").value,
+            tiquetes: document.getElementById("tiquetes").value,
+            ninos: document.getElementById("ninos").value || 0,
+            clase: document.querySelector('input[name="clase"]:checked').value,
+            fecha: document.getElementById("fecha").value,
+            nombre: document.getElementById("nombre").value,
+            pasaporte: document.getElementById("pasaporte").value,
+            email: document.getElementById("email").value,
+            telefono: document.getElementById("telefono").value
+        };
+        localStorage.setItem("datosReserva", JSON.stringify(datos));
+        window.location.href = "reserva_paso3.html";
+        }
+        </script>
+        <script>
+            const tiquetesInput = document.getElementById("tiquetes");
+            const ninosInput = document.getElementById("ninos");
+        
+            // Validar cantidad máxima de tiquetes
+            tiquetesInput.addEventListener("input", () => {
+                if (tiquetesInput.value > 6) {
+                    alert("No puede comprar más de 6 tiquetes.");
+                    tiquetesInput.value = 6; // Reestablece el valor máximo
+                }
+                validarCantidadNinos();
+            });
+        
+            // Validar cantidad máxima de niños
+            ninosInput.addEventListener("input", () => {
+                validarCantidadNinos();
+            });
+        
+            function validarCantidadNinos() {
+                const maxNinos = Math.max(0, tiquetesInput.value - 1); // Máximo niños = Tiquetes - 1
+                if (ninosInput.value > maxNinos) {
+                    alert(`El número máximo de niños permitido es ${maxNinos}.`);
+                    ninosInput.value = maxNinos; // Reestablece el valor máximo
+                }
+            }
+        </script>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aerolínea Ficticia. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
